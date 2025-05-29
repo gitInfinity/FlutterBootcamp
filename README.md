@@ -1,4 +1,4 @@
-# week1app
+# Counter button app
 
 This is an app made as part of week 1 task of my flutter bootcamp
 
