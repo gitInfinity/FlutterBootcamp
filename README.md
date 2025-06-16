@@ -1,16 +1,9 @@
-# week3app
+# Basic Notes app
 
-A new Flutter project.
+This is an app made as part of week 4 task of my flutter bootcamp
 
-## Getting Started
+## Description:
 
-This project is a starting point for a Flutter application.
+A simple note taking app that implements navigation and routing, alongside with basic widgets and ui elements
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
