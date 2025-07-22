@@ -1,0 +1,33 @@
+import 'package:flutter/material.dart';
+import 'package:notes_app/colors.dart';
+
+class NoteButton extends StatelessWidget {
+  const NoteButton({super.key, required this.label, this.onPressed});
+
+  final String label;
+  final VoidCallback? onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        boxShadow: [BoxShadow(offset: Offset(2, 2))],
+      ),
+      child: ElevatedButton(
+        style: ButtonStyle(
+          backgroundColor: WidgetStateProperty.all(primary),
+          foregroundColor: WidgetStateProperty.all(white),
+          shape: WidgetStateProperty.all(
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          ),
+          side: WidgetStateProperty.all(BorderSide(color: black)),
+          elevation: WidgetStatePropertyAll(0),
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        ),
+        onPressed: onPressed,
+        child: Text(label, style: TextStyle(fontFamily: "fredoka")),
+      ),
+    );
+  }
+}
