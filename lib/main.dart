@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
           stream: Auth.userStream,
           builder: (context, asyncSnapshot) {
             return asyncSnapshot.hasData ? const MainPage() : const Signup();
-          }
+          },
         ),
         localizationsDelegates: const [
           GlobalMaterialLocalizations.delegate,

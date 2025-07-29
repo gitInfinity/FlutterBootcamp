@@ -11,7 +11,6 @@ import 'package:notes_app/widgets/main_view.dart';
 import 'package:notes_app/widgets/note_card.dart';
 import 'package:notes_app/widgets/outlined_icon_button.dart';
 import 'package:notes_app/widgets/notes_fab.dart';
-import 'package:notes_app/widgets/tags_Dialog.dart';
 import 'package:provider/provider.dart';
 
 class MainPage extends StatefulWidget {

@@ -7,7 +7,6 @@ import 'package:notes_app/widgets/confirmation_dialog.dart';
 import 'package:notes_app/widgets/note_metadata.dart';
 import 'package:notes_app/widgets/note_toolbar.dart';
 import 'package:notes_app/widgets/outlined_icon_button.dart';
-import 'package:notes_app/widgets/tags_Dialog.dart';
 import 'package:provider/provider.dart';
 
 class NewOrEditPage extends StatefulWidget {
@@ -65,7 +64,8 @@ class _NeworEditNotesStateState extends State<NewOrEditPage> {
         }
         final bool? shouldSave = await showDialog<bool?>(
           context: context,
-          builder: (_) => ConfirmationDialogue(confirmation: "Do you want to save?"),
+          builder: (_) =>
+              ConfirmationDialogue(confirmation: "Do you want to save?"),
         );
         if (shouldSave == null) return;
         if (!context.mounted) return;

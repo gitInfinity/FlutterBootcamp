@@ -111,7 +111,12 @@ class _SignupState extends State<Signup> {
                     if (!isRegisterMode) ...[
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => RecoverPassword()));
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => RecoverPassword(),
+                            ),
+                          );
                         },
                         child: Text(
                           "Forgot password?",
