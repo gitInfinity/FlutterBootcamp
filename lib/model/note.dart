@@ -5,7 +5,7 @@ class Note {
     required this.contentJSON,
     required this.dateCreated,
     required this.dateModified,
-    required this.tags
+    required this.tags,
   });
 
   final String? title;

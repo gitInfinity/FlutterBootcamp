@@ -59,13 +59,13 @@ class _NeworEditNotesStateState extends State<NewOrEditPage> {
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
         if (didPop) return;
-        if(!newNoteController.cansaveNote) {Navigator.pop(context);
-        return;}
+        if (!newNoteController.cansaveNote) {
+          Navigator.pop(context);
+          return;
+        }
         final bool? shouldSave = await showDialog<bool?>(
           context: context,
-          builder: (_) => tags_Dialog(
-            child: ConfirmationDialogue(confirmation: "Do you want to save?"),
-          ),
+          builder: (_) => ConfirmationDialogue(confirmation: "Do you want to save?"),
         );
         if (shouldSave == null) return;
         if (!context.mounted) return;
@@ -137,7 +137,7 @@ class _NeworEditNotesStateState extends State<NewOrEditPage> {
                   },
                 ),
               ),
-              NoteMetadata(note: newNoteController.note,),
+              NoteMetadata(note: newNoteController.note),
               Divider(color: gray700),
               Expanded(
                 child: Selector<NewNote, bool>(

@@ -99,8 +99,11 @@ class NoteCard extends StatelessWidget {
                       final shouldDelete =
                           await showDialog<bool?>(
                             context: context,
-                            builder: (_) =>
-                                tags_Dialog(child: ConfirmationDialogue(confirmation: "Delete note?",)),
+                            builder: (_) => tags_Dialog(
+                              child: ConfirmationDialogue(
+                                confirmation: "Delete note?",
+                              ),
+                            ),
                           ) ??
                           false;
                       if (shouldDelete && context.mounted) {

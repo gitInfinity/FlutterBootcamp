@@ -3,12 +3,15 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:notes_app/change_notifiers/new_note_controller.dart';
 import 'package:notes_app/change_notifiers/note_provider.dart';
 import 'package:notes_app/colors.dart';
+import 'package:notes_app/model/auth.dart';
 import 'package:notes_app/model/note.dart';
 import 'package:notes_app/new_or_edit/new_or_edit.dart';
+import 'package:notes_app/widgets/confirmation_dialog.dart';
 import 'package:notes_app/widgets/main_view.dart';
 import 'package:notes_app/widgets/note_card.dart';
 import 'package:notes_app/widgets/outlined_icon_button.dart';
 import 'package:notes_app/widgets/notes_fab.dart';
+import 'package:notes_app/widgets/tags_Dialog.dart';
 import 'package:provider/provider.dart';
 
 class MainPage extends StatefulWidget {
@@ -27,7 +30,17 @@ class _MyWidgetState extends State<MainPage> {
         actions: [
           NoteIconButtonOutlined(
             icon: FontAwesomeIcons.rightFromBracket,
-            onPressed: () {},
+            onPressed: () async {
+              final bool shouldLogout =
+                  await showDialog<bool?>(
+                    context: context,
+                    builder: (_) => ConfirmationDialogue(
+                      confirmation: "Do you want to logout?",
+                    ),
+                  ) ??
+                  false;
+              if (shouldLogout) Auth.logout();
+            },
           ),
         ],
         centerTitle: true,

@@ -6,7 +6,7 @@ class NoteIconButtonOutlined extends StatelessWidget {
   const NoteIconButtonOutlined({
     super.key,
     required this.icon,
-    required this.onPressed
+    required this.onPressed,
   });
 
   final IconData icon;
@@ -19,9 +19,7 @@ class NoteIconButtonOutlined extends StatelessWidget {
       icon: FaIcon(icon),
       style: IconButton.styleFrom(
         backgroundColor: primary,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         foregroundColor: white,
         side: BorderSide(color: black),
       ),

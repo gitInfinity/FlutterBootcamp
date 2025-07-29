@@ -58,10 +58,10 @@ class NewNote extends ChangeNotifier {
     notifyListeners();
   }
 
-    void updateTag(String tag, int index){
-      _tags[index] = tag;
-      notifyListeners();
-    }
+  void updateTag(String tag, int index) {
+    _tags[index] = tag;
+    notifyListeners();
+  }
 
   bool get cansaveNote {
     final String? newTitle = title.isNotEmpty ? title : null;
@@ -94,7 +94,7 @@ class NewNote extends ChangeNotifier {
       dateModified: now,
       tags: tags,
     );
-    final notesProvider =  context.read<NoteProvider>();
+    final notesProvider = context.read<NoteProvider>();
     isNewNote ? notesProvider.addNote(note) : notesProvider.updateNote(note);
   }
 }

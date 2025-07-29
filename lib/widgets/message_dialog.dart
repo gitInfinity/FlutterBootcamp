@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:notes_app/widgets/note_button.dart';
 import 'package:notes_app/widgets/tags_Dialog.dart';
 
-class ConfirmationDialogue extends StatelessWidget {
-  const ConfirmationDialogue({required this.confirmation, super.key});
+class MessageDialog extends StatelessWidget {
+  const MessageDialog({required this.confirmation, super.key});
   final String confirmation;
   @override
   Widget build(BuildContext context) {
@@ -22,13 +22,8 @@ class ConfirmationDialogue extends StatelessWidget {
             Row(
               children: [
                 NoteButton(
-                  child: Text("No"),
-                  onPressed: () => Navigator.pop(context, false),
-                ),
-                Spacer(),
-                NoteButton(
-                  child: Text("Yes"),
-                  onPressed: () => Navigator.pop(context, true),
+                  child: Text("Ok"),
+                  onPressed: () => Navigator.pop(context),
                 ),
               ],
             ),

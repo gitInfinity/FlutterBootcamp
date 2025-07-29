@@ -56,11 +56,12 @@ class _NewNoteDialogState extends State<NewNoteDialog> {
             }
           },
           onChanged: (value) {
-          tagKey.currentState?.validate();
-      },
+            tagKey.currentState?.validate();
+          },
+          autofocus: true,
         ),
         NoteButton(
-          label: "Add tag",
+          child: Text("Add tag"),
           onPressed: () {
             if (tagKey.currentState?.validate() ?? false) {
               Navigator.pop(context, tagController.text.trim());

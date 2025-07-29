@@ -3,10 +3,7 @@ import 'package:flutter_quill/flutter_quill.dart';
 import 'package:notes_app/colors.dart';
 
 class NoteToolBar extends StatelessWidget {
-  const NoteToolBar({
-    super.key,
-    required this.quillController,
-  });
+  const NoteToolBar({super.key, required this.quillController});
 
   final QuillController quillController;
 
@@ -19,12 +16,7 @@ class NoteToolBar extends StatelessWidget {
         color: white,
         border: Border.all(color: primary),
         borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: primary,
-            offset: Offset(4, 4)
-          )
-        ]
+        boxShadow: [BoxShadow(color: primary, offset: Offset(4, 4))],
       ),
       child: QuillSimpleToolbar(
         controller: quillController,

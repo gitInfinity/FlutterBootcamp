@@ -2,31 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:notes_app/model/note.dart';
 
 extension ListDeepContains on List<String> {
-  bool deepContains (String term) => any((element)=>element.contains(term)) || contains(term);
+  bool deepContains(String term) =>
+      any((element) => element.contains(term)) || contains(term);
 }
 
 class NoteProvider extends ChangeNotifier {
   final List<Note> _notes = [];
-  List<Note> get notes => [..._searchTerm == "" ? _notes : _notes.where(_test)]..sort(_compare);
+  List<Note> get notes =>
+      [..._searchTerm == "" ? _notes : _notes.where(_test)]..sort(_compare);
 
   int _compare(Note note1, note2) {
     return orderby == OrderOptions.dateModified
         ? (_isDescending
               ? note2.dateModified.compareTo(note1.dateModified)
-              : note1.dateModified.compareTo(note2.dateModified)
-            )
+              : note1.dateModified.compareTo(note2.dateModified))
         : (_isDescending
               ? note2.dateCreated.compareTo(note1.dateCreated)
-              : note1.dateCreated.compareTo(note2.dateCreated)
-            );
+              : note1.dateCreated.compareTo(note2.dateCreated));
   }
 
-  bool _test(Note note1){
+  bool _test(Note note1) {
     final term = _searchTerm.toLowerCase().trim();
     final title = note1.title?.toLowerCase().trim() ?? '';
     final content = note1.content?.toLowerCase().trim() ?? '';
-    final tags = note1.tags?.map((toElement) => toElement.toLowerCase()).toList() ?? [];
-    return title.contains(term) || content.contains(term) || tags.deepContains(term);
+    final tags =
+        note1.tags?.map((toElement) => toElement.toLowerCase()).toList() ?? [];
+    return title.contains(term) ||
+        content.contains(term) ||
+        tags.deepContains(term);
   }
 
   void addNote(Note note) {
@@ -73,7 +76,7 @@ class NoteProvider extends ChangeNotifier {
 
   String _searchTerm = "";
   String get searchTerm => _searchTerm;
-  set searchTerm (String value){
+  set searchTerm(String value) {
     _searchTerm = value;
     notifyListeners();
   }

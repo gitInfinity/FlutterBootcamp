@@ -2,12 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:notes_app/colors.dart';
 
 class NoteTags extends StatelessWidget {
-  const NoteTags({
-    required this.label,
-    this.onClose,
-    this.onTap,
-    super.key,
-  });
+  const NoteTags({required this.label, this.onClose, this.onTap, super.key});
 
   final String label;
   final VoidCallback? onClose;
@@ -28,7 +23,10 @@ class NoteTags extends StatelessWidget {
           children: [
             Text(
               label,
-              style: TextStyle(color: gray700, fontSize: onClose!=null ? 15 : 12),
+              style: TextStyle(
+                color: gray700,
+                fontSize: onClose != null ? 15 : 12,
+              ),
             ),
             if (onClose != null) ...[
               SizedBox(width: 4),

@@ -12,7 +12,6 @@ class tags_Dialog extends StatefulWidget {
 
 // ignore: camel_case_types
 class _tags_DialogState extends State<tags_Dialog> {
-
   @override
   Widget build(BuildContext context) {
     return Center(

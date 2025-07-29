@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:notes_app/colors.dart';
 
 class NoteButton extends StatelessWidget {
-  const NoteButton({super.key, required this.label, this.onPressed});
+  const NoteButton({super.key, required this.child, this.onPressed});
 
-  final String label;
+  final Widget child;
   final VoidCallback? onPressed;
 
   @override
@@ -26,7 +26,7 @@ class NoteButton extends StatelessWidget {
           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         ),
         onPressed: onPressed,
-        child: Text(label, style: TextStyle(fontFamily: "fredoka")),
+        child: child,
       ),
     );
   }

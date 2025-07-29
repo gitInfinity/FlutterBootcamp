@@ -3,8 +3,12 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:notes_app/colors.dart';
 
 class Icon_Button extends StatelessWidget {
-  const Icon_Button({super.key,
-  required this.icon, this.size, required this.onPressed});
+  const Icon_Button({
+    super.key,
+    required this.icon,
+    this.size,
+    required this.onPressed,
+  });
 
   final IconData icon;
   final double? size;
@@ -26,4 +30,3 @@ class Icon_Button extends StatelessWidget {
     );
   }
 }
-  
