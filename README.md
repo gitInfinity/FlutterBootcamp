@@ -66,8 +66,9 @@ This project is based on a YouTube tutorial by Sayed Mahmood Sayedi. The tutoria
 To run the project locally:
 
 ```bash
-git clone https://github.com/yourusername/notes_app.git
-cd notes_app
+git clone https://github.com/gitInfinity/FlutterBootcamp.git
+cd FlutterBootcamp
+git checkout finalProject
 flutter pub get
 flutter run
 
