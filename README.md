@@ -4,4 +4,5 @@
 - ### Week1: Counter Button
 - ### Week3: Widgets
 - ### Week4: Notes app
+- ### Week: 8 Final Project
 
