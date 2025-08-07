@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:notes_app/change_notifiers/note_provider.dart';
 import 'package:notes_app/change_notifiers/registration_notifier.dart';
+import 'package:notes_app/change_notifiers/reminder_provider.dart';
 import 'package:notes_app/colors.dart';
 import 'package:notes_app/firebase_options.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => NoteProvider()),
         ChangeNotifierProvider(create: (context) => RegistrationController()),
+        ChangeNotifierProvider(create: (context) => ReminderProvider()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

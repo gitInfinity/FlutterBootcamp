@@ -25,6 +25,22 @@ class _MainViewState extends State<MainView> {
           spacing: 20,
           children: [
             SeachField(),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: Row(
+                children: [
+                  Text(
+                    'Notes',
+                    style: TextStyle(
+                      fontSize: 36,
+                      fontWeight: FontWeight.bold,
+                      color: primary,
+                      fontFamily: 'Fredoka',
+                    ),
+                  ),
+                ],
+              ),
+            ),
             if (widget.notes.isNotEmpty) ...[
               Row(
                 children: [
@@ -102,8 +118,12 @@ class _MainViewState extends State<MainView> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      Image.asset(
+                        'assets/images/download-removebg-preview.png',
+                      ),
+                      SizedBox(height: 10),
                       Text(
-                        'No notes found',
+                        'No notes yet',
                         style: TextStyle(
                           fontSize: 32,
                           fontWeight: FontWeight.bold,

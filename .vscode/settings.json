@@ -1,4 +1,5 @@
 {
     "cmake.sourceDirectory": "C:/Users/Rouhan/FlutterProjects/notes_app/linux",
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "java.configuration.updateBuildConfiguration": "interactive"
 }

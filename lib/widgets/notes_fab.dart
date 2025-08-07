@@ -3,27 +3,47 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:notes_app/colors.dart';
 
 class NotesFAB extends StatelessWidget {
-  const NotesFAB({super.key, required this.onPressed});
+  const NotesFAB({
+    super.key,
+    required this.onPressed,
+    this.icon = FontAwesomeIcons.plus,
+    this.size = 150.0,
+    this.borderRadius = 16.0,
+    this.shadowOffset = const Offset(4, 4),
+    this.shadowColor = Colors.black,
+  });
 
   final VoidCallback? onPressed;
+  final IconData icon;
+  final double size;
+  final double borderRadius;
+  final Offset shadowOffset;
+  final Color shadowColor;
 
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [BoxShadow(color: black, offset: Offset(4, 4))],
+        borderRadius: BorderRadius.circular(borderRadius),
+        boxShadow: [
+          BoxShadow(
+            color: shadowColor,
+            offset: shadowOffset,
+          ),
+        ],
       ),
       child: FloatingActionButton.large(
         onPressed: onPressed,
         backgroundColor: primary,
         foregroundColor: white,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-          side: BorderSide(color: black),
+          borderRadius: BorderRadius.circular(borderRadius),
         ),
-        child: FaIcon(FontAwesomeIcons.plus),
+        elevation: 0,
+        child: FaIcon(icon, size: size * 0.3), // Added for accessibility
       ),
     );
   }
 }
+
+// Example usage in a Scaffold

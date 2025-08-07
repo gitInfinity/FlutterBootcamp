@@ -1,11 +1,16 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:notes_app/change_notifiers/new_note_controller.dart';
 import 'package:notes_app/change_notifiers/note_provider.dart';
+import 'package:notes_app/change_notifiers/new_note_controller.dart';
+import 'package:notes_app/change_notifiers/reminder_controller.dart';
 import 'package:notes_app/colors.dart';
 import 'package:notes_app/model/auth.dart';
 import 'package:notes_app/model/note.dart';
 import 'package:notes_app/new_or_edit/new_or_edit.dart';
+import 'package:notes_app/reminders/reminders.dart';
+import 'package:notes_app/reminders/reminders_list.dart';
+import 'package:notes_app/services/notification_logic.dart';
 import 'package:notes_app/widgets/confirmation_dialog.dart';
 import 'package:notes_app/widgets/main_view.dart';
 import 'package:notes_app/widgets/note_card.dart';
@@ -21,6 +26,18 @@ class MainPage extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<MainPage> {
+  User? user;
+  bool on = true;
+  int _currentIndex = 0;
+  
+  @override
+  void initState() {
+    super.initState();
+    user = FirebaseAuth.instance.currentUser;
+    NotificationLogic.init(context, user!.uid);
+    listenNotifications();
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,48 +61,69 @@ class _MyWidgetState extends State<MainPage> {
         ],
         centerTitle: true,
       ),
-      floatingActionButton: NotesFAB(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ChangeNotifierProvider(
-                create: (context) => NewNote(),
-                child: NewOrEditPage(isNewNote: true),
-              ),
-            ),
-          );
-        },
-      ),
-      body: Consumer<NoteProvider>(
-        builder: (context, notesProvider, child) {
-          final List<Note> notes = notesProvider.notes;
-          return notes.isEmpty && notesProvider.searchTerm.isEmpty
-              ? Container(
-                  alignment: Alignment.center,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        'assets/images/download-removebg-preview.png',
-                      ),
-                      SizedBox(height: 10),
-                      Text(
-                        'No notes yet',
-                        style: TextStyle(
-                          fontSize: 32,
-                          fontWeight: FontWeight.bold,
-                          color: gray500,
-                          fontFamily: 'Fredoka',
-                        ),
-                      ),
-                    ],
+      floatingActionButton: _currentIndex == 0 
+        ? NotesFAB(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ChangeNotifierProvider(
+                    create: (context) => NewNote(),
+                    child: NewOrEditPage(isNewNote: true),
                   ),
-                )
-              : MainView(notes: notes);
+                ),
+              );
+            },
+          )
+        : NotesFAB(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ChangeNotifierProvider(
+                    create: (context) => ReminderController(),
+                    child: const Reminders(isNewReminder: true),
+                  ),
+                ),
+              );
+            },
+          ),
+      body: _buildBody(),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
         },
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(FontAwesomeIcons.noteSticky),
+            label: 'Notes',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(FontAwesomeIcons.bell),
+            label: 'Reminders',
+          ),
+        ],
       ),
     );
+  }
+
+  Widget _buildBody() {
+    switch (_currentIndex) {
+      case 0:
+        return Consumer<NoteProvider>(
+          builder: (context, notesProvider, child) {
+            final List<Note> notes = notesProvider.notes;
+            return MainView(notes: notes);
+          },
+        );
+      case 1:
+        return const RemindersList();
+      default:
+        return const SizedBox.shrink();
+    }
   }
 }
 
