@@ -25,18 +25,18 @@ class NotificationLogic {
 
   static Future init(BuildContext context, String uid) async {
     tz.initializeTimeZones();
-    
+
     // Initialize Android settings with proper icon
     final android = AndroidInitializationSettings("@mipmap/ic_launcher");
     final settings = InitializationSettings(android: android);
-    
+
     await _notifications.initialize(
       settings,
       onDidReceiveBackgroundNotificationResponse: (details) {
         onNotifications.add(details.payload);
       },
     );
-    
+
     // Request notification permissions (required for Android 13+)
     await _requestPermissions();
   }
@@ -44,9 +44,11 @@ class NotificationLogic {
   static Future _requestPermissions() async {
     // Request notification permissions
     final AndroidFlutterLocalNotificationsPlugin? androidImplementation =
-        _notifications.resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>();
-    
+        _notifications
+            .resolvePlatformSpecificImplementation<
+              AndroidFlutterLocalNotificationsPlugin
+            >();
+
     if (androidImplementation != null) {
       await androidImplementation.requestNotificationsPermission();
     }
@@ -70,7 +72,8 @@ class NotificationLogic {
           tz.TZDateTime.from(dateTime, tz.local),
           await _notificationDetails(),
           androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-          uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
+          uiLocalNotificationDateInterpretation:
+              UILocalNotificationDateInterpretation.absoluteTime,
         );
         print('Notification scheduled successfully');
       } else {
@@ -98,9 +101,11 @@ class NotificationLogic {
   // Check if exact alarms are allowed
   static Future<bool> areExactAlarmsAllowed() async {
     final AndroidFlutterLocalNotificationsPlugin? androidImplementation =
-        _notifications.resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>();
-    
+        _notifications
+            .resolvePlatformSpecificImplementation<
+              AndroidFlutterLocalNotificationsPlugin
+            >();
+
     if (androidImplementation != null) {
       return await androidImplementation.areNotificationsEnabled() ?? false;
     }

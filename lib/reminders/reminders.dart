@@ -126,7 +126,8 @@ class _RemindersState extends State<Reminders> {
           if (_titleController.text.isEmpty && controller.title.isNotEmpty) {
             _titleController.text = controller.title;
           }
-          if (_descriptionController.text.isEmpty && controller.description.isNotEmpty) {
+          if (_descriptionController.text.isEmpty &&
+              controller.description.isNotEmpty) {
             _descriptionController.text = controller.description;
           }
         }

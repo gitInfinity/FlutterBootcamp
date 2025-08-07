@@ -29,7 +29,7 @@ class _MyWidgetState extends State<MainPage> {
   User? user;
   bool on = true;
   int _currentIndex = 0;
-  
+
   @override
   void initState() {
     super.initState();
@@ -37,7 +37,7 @@ class _MyWidgetState extends State<MainPage> {
     NotificationLogic.init(context, user!.uid);
     listenNotifications();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,33 +61,33 @@ class _MyWidgetState extends State<MainPage> {
         ],
         centerTitle: true,
       ),
-      floatingActionButton: _currentIndex == 0 
-        ? NotesFAB(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ChangeNotifierProvider(
-                    create: (context) => NewNote(),
-                    child: NewOrEditPage(isNewNote: true),
+      floatingActionButton: _currentIndex == 0
+          ? NotesFAB(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ChangeNotifierProvider(
+                      create: (context) => NewNote(),
+                      child: NewOrEditPage(isNewNote: true),
+                    ),
                   ),
-                ),
-              );
-            },
-          )
-        : NotesFAB(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ChangeNotifierProvider(
-                    create: (context) => ReminderController(),
-                    child: const Reminders(isNewReminder: true),
+                );
+              },
+            )
+          : NotesFAB(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ChangeNotifierProvider(
+                      create: (context) => ReminderController(),
+                      child: const Reminders(isNewReminder: true),
+                    ),
                   ),
-                ),
-              );
-            },
-          ),
+                );
+              },
+            ),
       body: _buildBody(),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,

@@ -25,6 +25,7 @@ class ReminderController extends ChangeNotifier {
     _title = value;
     notifyListeners();
   }
+
   String get title => _title.trim();
 
   String _description = "";
@@ -32,6 +33,7 @@ class ReminderController extends ChangeNotifier {
     _description = value;
     notifyListeners();
   }
+
   String get description => _description.trim();
 
   String _category = 'Work';
@@ -39,6 +41,7 @@ class ReminderController extends ChangeNotifier {
     _category = value;
     notifyListeners();
   }
+
   String get category => _category;
 
   DateTime? _selectedDate;
@@ -46,6 +49,7 @@ class ReminderController extends ChangeNotifier {
     _selectedDate = value;
     notifyListeners();
   }
+
   DateTime? get selectedDate => _selectedDate;
 
   TimeOfDay? _selectedTime;
@@ -53,6 +57,7 @@ class ReminderController extends ChangeNotifier {
     _selectedTime = value;
     notifyListeners();
   }
+
   TimeOfDay? get selectedTime => _selectedTime;
 
   bool get canSaveReminder {
@@ -86,7 +91,7 @@ class ReminderController extends ChangeNotifier {
     if (newDateTime == null) return;
 
     final int now = DateTime.now().microsecondsSinceEpoch;
-    final String id = isNewReminder 
+    final String id = isNewReminder
         ? DateTime.now().millisecondsSinceEpoch.toString()
         : _reminder!.id;
 
@@ -103,7 +108,7 @@ class ReminderController extends ChangeNotifier {
     );
 
     final reminderProvider = context.read<ReminderProvider>();
-    isNewReminder 
+    isNewReminder
         ? reminderProvider.addReminder(newReminder)
         : reminderProvider.updateReminder(newReminder);
   }
@@ -117,4 +122,4 @@ class ReminderController extends ChangeNotifier {
     _reminder = null;
     notifyListeners();
   }
-} 
+}

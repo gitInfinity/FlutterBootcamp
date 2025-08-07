@@ -17,7 +17,12 @@ class RemindersList extends StatefulWidget {
 
 class _RemindersListState extends State<RemindersList> {
   String _selectedFilter = 'All';
-  final List<String> _filterOptions = ['All', 'Upcoming', 'Overdue', 'Completed'];
+  final List<String> _filterOptions = [
+    'All',
+    'Upcoming',
+    'Overdue',
+    'Completed',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -44,16 +49,20 @@ class _RemindersListState extends State<RemindersList> {
                         children: [
                           Icon(
                             _getFilterIcon(option),
-                            color: _selectedFilter == option ? primary : gray500,
+                            color: _selectedFilter == option
+                                ? primary
+                                : gray500,
                             size: 16,
                           ),
                           const SizedBox(width: 8),
                           Text(
                             option,
                             style: TextStyle(
-                              color: _selectedFilter == option ? primary : gray500,
-                              fontWeight: _selectedFilter == option 
-                                  ? FontWeight.w600 
+                              color: _selectedFilter == option
+                                  ? primary
+                                  : gray500,
+                              fontWeight: _selectedFilter == option
+                                  ? FontWeight.w600
                                   : FontWeight.normal,
                             ),
                           ),
@@ -64,10 +73,7 @@ class _RemindersListState extends State<RemindersList> {
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Icon(
-                    FontAwesomeIcons.filter,
-                    color: primary,
-                  ),
+                  child: Icon(FontAwesomeIcons.filter, color: primary),
                 ),
               );
             },
@@ -76,8 +82,10 @@ class _RemindersListState extends State<RemindersList> {
       ),
       body: Consumer<ReminderProvider>(
         builder: (context, reminderProvider, child) {
-          List<dynamic> filteredReminders = _getFilteredReminders(reminderProvider);
-          
+          List<dynamic> filteredReminders = _getFilteredReminders(
+            reminderProvider,
+          );
+
           if (filteredReminders.isEmpty) {
             return _buildEmptyState();
           }
@@ -85,17 +93,16 @@ class _RemindersListState extends State<RemindersList> {
           return Column(
             children: [
               // Summary cards
-              if (_selectedFilter == 'All') _buildSummaryCards(reminderProvider),
-              
+              if (_selectedFilter == 'All')
+                _buildSummaryCards(reminderProvider),
+
               // Reminders list
               Expanded(
                 child: ListView.builder(
                   padding: const EdgeInsets.all(8),
                   itemCount: filteredReminders.length,
                   itemBuilder: (context, index) {
-                    return ReminderCard(
-                      reminder: filteredReminders[index],
-                    );
+                    return ReminderCard(reminder: filteredReminders[index]);
                   },
                 ),
               ),
@@ -187,7 +194,12 @@ class _RemindersListState extends State<RemindersList> {
     );
   }
 
-  Widget _buildSummaryCard(String title, String count, Color color, IconData icon) {
+  Widget _buildSummaryCard(
+    String title,
+    String count,
+    Color color,
+    IconData icon,
+  ) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -251,11 +263,7 @@ class _RemindersListState extends State<RemindersList> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            icon,
-            size: 64,
-            color: color.withValues(alpha: 0.5),
-          ),
+          Icon(icon, size: 64, color: color.withValues(alpha: 0.5)),
           const SizedBox(height: 16),
           Text(
             message,
@@ -270,4 +278,4 @@ class _RemindersListState extends State<RemindersList> {
       ),
     );
   }
-} 
+}

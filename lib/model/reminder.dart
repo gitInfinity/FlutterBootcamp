@@ -72,4 +72,4 @@ class Reminder {
       notificationId: json['notificationId'],
     );
   }
-} 
+}

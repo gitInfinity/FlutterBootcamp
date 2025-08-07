@@ -25,12 +25,7 @@ class NotesFAB extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(borderRadius),
-        boxShadow: [
-          BoxShadow(
-            color: shadowColor,
-            offset: shadowOffset,
-          ),
-        ],
+        boxShadow: [BoxShadow(color: shadowColor, offset: shadowOffset)],
       ),
       child: FloatingActionButton.large(
         onPressed: onPressed,

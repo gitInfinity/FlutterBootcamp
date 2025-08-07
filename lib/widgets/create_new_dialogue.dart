@@ -34,7 +34,7 @@ class CreateNewDialog extends StatelessWidget {
                 NoteButton(
                   child: Text("New Note"),
                   onPressed: () {
-                    Navigator.pop(context); 
+                    Navigator.pop(context);
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -50,7 +50,7 @@ class CreateNewDialog extends StatelessWidget {
                 NoteButton(
                   child: Text("New Reminder"),
                   onPressed: () {
-                    Navigator.pop(context); 
+                    Navigator.pop(context);
                     Navigator.push(
                       context,
                       MaterialPageRoute(
