@@ -37,7 +37,6 @@ class ReminderProvider extends ChangeNotifier {
   void updateReminder(Reminder reminder) {
     final index = _reminders.indexWhere((element) => element.id == reminder.id);
     if (index != -1) {
-      // Cancel existing notification if any
       if (_reminders[index].notificationId != null) {
         NotificationLogic.cancelNotification(_reminders[index].notificationId!);
       }
@@ -48,7 +47,6 @@ class ReminderProvider extends ChangeNotifier {
   }
 
   void deleteReminder(Reminder reminder) {
-    // Cancel notification if exists
     if (reminder.notificationId != null) {
       NotificationLogic.cancelNotification(reminder.notificationId!);
     }
@@ -64,11 +62,9 @@ class ReminderProvider extends ChangeNotifier {
         dateModified: DateTime.now().microsecondsSinceEpoch,
       );
 
-      // Cancel notification if marking as completed
       if (updatedReminder.isCompleted && reminder.notificationId != null) {
         NotificationLogic.cancelNotification(reminder.notificationId!);
       } else if (!updatedReminder.isCompleted) {
-        // Reschedule notification if marking as incomplete
         _scheduleNotification(updatedReminder);
       }
 
@@ -79,7 +75,6 @@ class ReminderProvider extends ChangeNotifier {
 
   void _scheduleNotification(Reminder reminder) {
     if (!reminder.isCompleted && reminder.dateTime.isAfter(DateTime.now())) {
-      // Use a smaller, unique ID for notifications
       final notificationId = reminder.id.hashCode.abs();
       NotificationLogic.showNotification(
         id: notificationId,
@@ -89,7 +84,6 @@ class ReminderProvider extends ChangeNotifier {
         dateTime: reminder.dateTime,
       );
 
-      // Update reminder with notification ID
       final index = _reminders.indexWhere(
         (element) => element.id == reminder.id,
       );

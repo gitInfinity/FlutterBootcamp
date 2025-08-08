@@ -35,10 +35,8 @@ class NotesFAB extends StatelessWidget {
           borderRadius: BorderRadius.circular(borderRadius),
         ),
         elevation: 0,
-        child: FaIcon(icon, size: size * 0.3), // Added for accessibility
+        child: FaIcon(icon, size: size * 0.3),
       ),
     );
   }
 }
-
-// Example usage in a Scaffold

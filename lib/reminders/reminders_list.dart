@@ -92,11 +92,9 @@ class _RemindersListState extends State<RemindersList> {
 
           return Column(
             children: [
-              // Summary cards
               if (_selectedFilter == 'All')
                 _buildSummaryCards(reminderProvider),
 
-              // Reminders list
               Expanded(
                 child: ListView.builder(
                   padding: const EdgeInsets.all(8),

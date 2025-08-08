@@ -120,9 +120,7 @@ class _RemindersState extends State<Reminders> {
   Widget build(BuildContext context) {
     return Consumer<ReminderController>(
       builder: (context, controller, child) {
-        // Only sync controllers once when editing an existing reminder
         if (!widget.isNewReminder) {
-          // Check if controllers haven't been initialized with the reminder data yet
           if (_titleController.text.isEmpty && controller.title.isNotEmpty) {
             _titleController.text = controller.title;
           }
@@ -188,7 +186,6 @@ class _RemindersState extends State<Reminders> {
                         hintStyle: TextStyle(color: gray300),
                       ),
                       onChanged: (value) {
-                        // Only update if the value actually changed to avoid unnecessary rebuilds
                         if (controller.title != value) {
                           controller.title = value;
                         }
@@ -222,7 +219,6 @@ class _RemindersState extends State<Reminders> {
                         hintStyle: TextStyle(color: gray300),
                       ),
                       onChanged: (value) {
-                        // Only update if the value actually changed to avoid unnecessary rebuilds
                         if (controller.description != value) {
                           controller.description = value;
                         }
@@ -268,7 +264,7 @@ class _RemindersState extends State<Reminders> {
                     ),
                   ),
                   const SizedBox(height: 24),
-                  // Date Picker Section
+
                   GestureDetector(
                     onTap: _showDatePicker,
                     child: Container(
@@ -311,7 +307,7 @@ class _RemindersState extends State<Reminders> {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  // Time Picker Section
+
                   GestureDetector(
                     onTap: _showTimePicker,
                     child: Container(
@@ -424,7 +420,7 @@ class _CustomTimePickerDialogState extends State<_CustomTimePickerDialog> {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
             ),
             const SizedBox(height: 30),
-            // Time Display
+
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -513,7 +509,7 @@ class _CustomTimePickerDialogState extends State<_CustomTimePickerDialog> {
               ],
             ),
             const SizedBox(height: 30),
-            // Clock Interface
+
             Column(
               children: [
                 Text(
@@ -547,13 +543,11 @@ class _CustomTimePickerDialogState extends State<_CustomTimePickerDialog> {
                         final distance = position.distance;
 
                         if (distance > 30 && distance < 70) {
-                          // Hour selection (inner ring)
                           int hour =
                               ((angle / (2 * 3.14159)) * 12).round() % 12;
                           if (hour == 0) hour = 12;
                           setState(() => _selectedHour = hour);
                         } else if (distance > 70 && distance < 100) {
-                          // Minute selection (outer ring)
                           int minute =
                               ((angle / (2 * 3.14159)) * 60).round() % 60;
                           setState(() => _selectedMinute = minute);
@@ -563,7 +557,7 @@ class _CustomTimePickerDialogState extends State<_CustomTimePickerDialog> {
                   ),
                 ),
                 const SizedBox(height: 30),
-                // Action Buttons
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -618,14 +612,12 @@ class _ClockPainter extends CustomPainter {
     final center = Offset(size.width / 2, size.height / 2);
     final radius = size.width / 2;
 
-    // Draw clock circle
     final circlePaint = Paint()
       ..color = Colors.grey.shade200
       ..style = PaintingStyle.stroke
       ..strokeWidth = 2;
     canvas.drawCircle(center, radius - 10, circlePaint);
 
-    // Draw selection area indicators
     final hourAreaPaint = Paint()
       ..color = Colors.deepPurple.withValues(alpha: 0.1)
       ..style = PaintingStyle.stroke
@@ -638,7 +630,6 @@ class _ClockPainter extends CustomPainter {
       ..strokeWidth = 1;
     canvas.drawCircle(center, 100, minuteAreaPaint);
 
-    // Draw hour numbers
     for (int i = 1; i <= 12; i++) {
       final angle = (i * 30 - 90) * 3.14159 / 180;
       final x = center.dx + (radius - 30) * 0.7 * math.cos(angle);
@@ -667,16 +658,14 @@ class _ClockPainter extends CustomPainter {
       );
     }
 
-    // Draw minute marks
     for (int i = 0; i < 60; i += 5) {
-      if (i % 15 == 0) continue; // Skip main hour positions
+      if (i % 15 == 0) continue;
       final angle = (i * 6 - 90) * 3.14159 / 180;
       final x = center.dx + (radius - 20) * math.cos(angle);
       final y = center.dy + (radius - 20) * math.sin(angle);
       canvas.drawCircle(Offset(x, y), 2, Paint()..color = Colors.grey.shade400);
     }
 
-    // Draw selected minute
     if (minute % 5 == 0) {
       final angle = (minute * 6 - 90) * 3.14159 / 180;
       final x = center.dx + (radius - 20) * math.cos(angle);
@@ -684,11 +673,9 @@ class _ClockPainter extends CustomPainter {
       canvas.drawCircle(Offset(x, y), 4, Paint()..color = Colors.deepPurple);
     }
 
-    // Draw hands
     final hourAngle = ((hour % 12) * 30 + minute * 0.5 - 90) * 3.14159 / 180;
     final minuteAngle = (minute * 6 - 90) * 3.14159 / 180;
 
-    // Hour hand
     final hourHandPaint = Paint()
       ..color = Colors.deepPurple
       ..strokeWidth = 3
@@ -702,7 +689,6 @@ class _ClockPainter extends CustomPainter {
       hourHandPaint,
     );
 
-    // Minute hand
     final minuteHandPaint = Paint()
       ..color = Colors.deepPurple
       ..strokeWidth = 2
@@ -716,12 +702,9 @@ class _ClockPainter extends CustomPainter {
       minuteHandPaint,
     );
 
-    // Center dot
     canvas.drawCircle(center, 4, Paint()..color = Colors.deepPurple);
   }
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) => true;
 }
-
-// You'll need to add this import at the top of your file

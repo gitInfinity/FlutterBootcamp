@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/colors.dart';
 
-// ignore: camel_case_types
 class tags_Dialog extends StatefulWidget {
   const tags_Dialog({super.key, required this.child});
   final Widget child;
@@ -10,7 +9,6 @@ class tags_Dialog extends StatefulWidget {
   State<tags_Dialog> createState() => _tags_DialogState();
 }
 
-// ignore: camel_case_types
 class _tags_DialogState extends State<tags_Dialog> {
   @override
   Widget build(BuildContext context) {

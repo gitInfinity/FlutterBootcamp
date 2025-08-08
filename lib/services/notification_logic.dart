@@ -26,7 +26,6 @@ class NotificationLogic {
   static Future init(BuildContext context, String uid) async {
     tz.initializeTimeZones();
 
-    // Initialize Android settings with proper icon
     final android = AndroidInitializationSettings("@mipmap/ic_launcher");
     final settings = InitializationSettings(android: android);
 
@@ -37,12 +36,10 @@ class NotificationLogic {
       },
     );
 
-    // Request notification permissions (required for Android 13+)
     await _requestPermissions();
   }
 
   static Future _requestPermissions() async {
-    // Request notification permissions
     final AndroidFlutterLocalNotificationsPlugin? androidImplementation =
         _notifications
             .resolvePlatformSpecificImplementation<
@@ -62,7 +59,6 @@ class NotificationLogic {
     required DateTime dateTime,
   }) async {
     try {
-      // Only schedule if the time is in the future
       if (dateTime.isAfter(DateTime.now())) {
         print('Scheduling notification: $title at $dateTime');
         await _notifications.zonedSchedule(
@@ -88,7 +84,6 @@ class NotificationLogic {
     await _notifications.cancel(id);
   }
 
-  // Test method to show notification immediately
   static Future testNotification() async {
     await _notifications.show(
       999,
@@ -98,7 +93,6 @@ class NotificationLogic {
     );
   }
 
-  // Check if exact alarms are allowed
   static Future<bool> areExactAlarmsAllowed() async {
     final AndroidFlutterLocalNotificationsPlugin? androidImplementation =
         _notifications
