@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "936261767673",
+    "project_id": "peachpaper-25740",
+    "storage_bucket": "peachpaper-25740.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:936261767673:android:62f2e87566fcba9c72ed28",
+        "android_client_info": {
+          "package_name": "com.example.notesapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5dA6dP6_aY8vv7H4AU7mzRgn1rPhs9wQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
