@@ -47,89 +47,100 @@ class _CustomTimePickerDialogState extends State<CustomTimePickerDialog> {
             const SizedBox(height: 30),
 
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text(
-                  _selectedHour.toString().padLeft(2, '0'),
-                  style: const TextStyle(
-                    fontSize: 48,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.deepPurple,
-                  ),
-                ),
-                const Text(
-                  ' : ',
-                  style: TextStyle(
-                    fontSize: 48,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.deepPurple,
-                  ),
-                ),
-                Text(
-                  _selectedMinute.toString().padLeft(2, '0'),
-                  style: const TextStyle(
-                    fontSize: 48,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.deepPurple,
-                  ),
-                ),
-                const SizedBox(width: 20),
-                Column(
-                  children: [
-                    GestureDetector(
-                      onTap: () =>
-                          setState(() => _selectedPeriod = DayPeriod.am),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 6,
+                // Time display - takes available space
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        _selectedHour.toString().padLeft(2, '0'),
+                        style: const TextStyle(
+                          fontSize: 48,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.deepPurple,
                         ),
-                        decoration: BoxDecoration(
-                          color: _selectedPeriod == DayPeriod.am
-                              ? Colors.pink.shade100
-                              : Colors.transparent,
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: Colors.grey.shade300),
+                      ),
+                      const Text(
+                        ' : ',
+                        style: TextStyle(
+                          fontSize: 48,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.deepPurple,
                         ),
-                        child: Text(
-                          'AM',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
+                      ),
+                      Text(
+                        _selectedMinute.toString().padLeft(2, '0'),
+                        style: const TextStyle(
+                          fontSize: 48,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.deepPurple,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                // AM/PM buttons - fixed width
+                SizedBox(
+                  width: 60,
+                  child: Column(
+                    children: [
+                      GestureDetector(
+                        onTap: () =>
+                            setState(() => _selectedPeriod = DayPeriod.am),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 6,
+                          ),
+                          decoration: BoxDecoration(
                             color: _selectedPeriod == DayPeriod.am
-                                ? Colors.pink
-                                : Colors.grey.shade600,
+                                ? Colors.pink.shade100
+                                : Colors.transparent,
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: Colors.grey.shade300),
+                          ),
+                          child: Text(
+                            'AM',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              color: _selectedPeriod == DayPeriod.am
+                                  ? Colors.pink
+                                  : Colors.grey.shade600,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 8),
-                    GestureDetector(
-                      onTap: () =>
-                          setState(() => _selectedPeriod = DayPeriod.pm),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 6,
-                        ),
-                        decoration: BoxDecoration(
-                          color: _selectedPeriod == DayPeriod.pm
-                              ? Colors.pink.shade100
-                              : Colors.transparent,
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: Colors.grey.shade300),
-                        ),
-                        child: Text(
-                          'PM',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
+                      const SizedBox(height: 8),
+                      GestureDetector(
+                        onTap: () =>
+                            setState(() => _selectedPeriod = DayPeriod.pm),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 6,
+                          ),
+                          decoration: BoxDecoration(
                             color: _selectedPeriod == DayPeriod.pm
-                                ? Colors.pink
-                                : Colors.grey.shade600,
+                                ? Colors.pink.shade100
+                                : Colors.transparent,
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: Colors.grey.shade300),
+                          ),
+                          child: Text(
+                            'PM',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              color: _selectedPeriod == DayPeriod.pm
+                                  ? Colors.pink
+                                  : Colors.grey.shade600,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             ),
