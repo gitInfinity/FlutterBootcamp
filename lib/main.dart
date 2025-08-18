@@ -12,9 +12,11 @@ import 'package:notesapp/main_page/main_page.dart';
 import 'package:notesapp/model/auth.dart';
 import 'package:notesapp/signup/signup.dart';
 import 'package:provider/provider.dart';
+import 'package:notesapp/services/notification_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await NotificationService().initialize();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
