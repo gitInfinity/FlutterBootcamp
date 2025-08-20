@@ -12,7 +12,20 @@
           "package_name": "com.example.notesapp"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "936261767673-1f2qphughsthd046ak5haqcf2rcqi732.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.notesapp",
+            "certificate_hash": "914294292c899b41dd436c54f028573a64818cd4"
+          }
+        },
+        {
+          "client_id": "936261767673-1sfnrr2ntspjslmfv5qglsi7d5fc2rif.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyD5dA6dP6_aY8vv7H4AU7mzRgn1rPhs9wQ"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "936261767673-1sfnrr2ntspjslmfv5qglsi7d5fc2rif.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "936261767673-7b1t5908ls8ij2caumrge696d84osbg7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.notesapp"
+              }
+            }
+          ]
         }
       }
     }

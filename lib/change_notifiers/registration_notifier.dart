@@ -66,6 +66,28 @@ class RegistrationController extends ChangeNotifier {
     }
   }
 
+  Future<void> authenticateWithGoogle({required BuildContext context}) async {
+    isLoading = true;
+    try {
+      await Auth.signInWithGoogle(context);
+    } on FirebaseAuthException catch (e) {
+      if (!context.mounted) return;
+      showDialog(
+        context: context,
+        builder: (_) =>
+            MessageDialog(confirmation: authExceptionMapper[e.code] ?? "Authentication Error: ${e.message}"),
+      );
+    } catch (e) {
+      if (!context.mounted) return;
+      showDialog(
+        context: context,
+        builder: (_) => MessageDialog(confirmation: "Google Sign-In Error: $e"),
+      );
+    } finally {
+      isLoading = false;
+    }
+  }
+
   Future<void> resetPassword({
     required BuildContext context,
     required String email,

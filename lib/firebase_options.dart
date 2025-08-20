@@ -64,6 +64,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '936261767673',
     projectId: 'peachpaper-25740',
     storageBucket: 'peachpaper-25740.firebasestorage.app',
+    androidClientId: '936261767673-1f2qphughsthd046ak5haqcf2rcqi732.apps.googleusercontent.com',
+    iosClientId: '936261767673-7b1t5908ls8ij2caumrge696d84osbg7.apps.googleusercontent.com',
     iosBundleId: 'com.example.notesapp',
   );
 
@@ -73,6 +75,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '936261767673',
     projectId: 'peachpaper-25740',
     storageBucket: 'peachpaper-25740.firebasestorage.app',
+    androidClientId: '936261767673-1f2qphughsthd046ak5haqcf2rcqi732.apps.googleusercontent.com',
+    iosClientId: '936261767673-7b1t5908ls8ij2caumrge696d84osbg7.apps.googleusercontent.com',
     iosBundleId: 'com.example.notesapp',
   );
 
@@ -85,4 +89,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'peachpaper-25740.firebasestorage.app',
     measurementId: 'G-XNT65QK5M7',
   );
+
 }

@@ -23,10 +23,12 @@ class _SignupState extends State<Signup> {
       TextEditingController();
   late final GlobalKey<FormState> formKey = GlobalKey();
   late final RegistrationController registrationNotifier;
+  late final RegistrationController registrationController;
   @override
   void initState() {
     super.initState();
     registrationNotifier = context.read<RegistrationController>();
+    registrationController = context.read<RegistrationController>();
   }
 
   @override
@@ -180,7 +182,9 @@ class _SignupState extends State<Signup> {
                         Expanded(
                           child: NoteIconButtonOutlined(
                             icon: FontAwesomeIcons.google,
-                            onPressed: () {},
+                            onPressed: () {
+                              registrationController.authenticateWithGoogle(context: context);
+                            },
                           ),
                         ),
                         SizedBox(width: 16),
