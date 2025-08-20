@@ -75,7 +75,7 @@ To get started with **PeachPaper**, follow these steps:
 
 1. Open a terminal and clone the repository:
    ```bash
-    git clone -b finalProject https://github.com/your-username/notesapp.git
+    git clone -b finalProject https://github.com/gitInfinity/FlutterBootcamp.git
 
 
    
